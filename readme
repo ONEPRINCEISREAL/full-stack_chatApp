@@ -1,0 +1,100 @@
+Deployment of a Full-stack Real-time Chat Application on Kubernetes Successfully
+
+I have recently completed the deployment of a full-stack real-time chat application (react front-end and node.js back-end, MongoDB Database) on kubernetes as containerized microservices with full orchestration of kubernetes for the entire application stack.
+
+What I Built:
+
+I wrote and created all of the kubernetes configurations manually for all aspects of the application, including:
+
+Deployment Manifests
+
+Service Definitions
+
+Persistent Volume and Persistent Volume Claim for MongoDB
+
+Secret and Config Map
+
+Namespace Separation
+
+Architecture Ready for Ingress and Production Scalability
+
+By interacting with YAML directly for each aspect of the Application, I have been able to gain an in-depth and practical understanding of the various concepts of kubernetes.
+
+The Key Challenge and My Solution:
+1. MongoDB Connectivity Issues
+
+The backend could not connect to mongoDB which produced the following errors: ‘ECONNREFUSED :27017’ and authentication errors.
+
+My Solution:
+
+Corrected the selector of MongoDB service
+
+Patched the service to connect to the correct pod
+
+Verified the connection to mongoDB from within a test pod by running mongosh
+
+Fixed the setup of Secrets that were injected into the backend
+
+2. Backend CrashLoopBackOff
+
+The backend was crashing over and over due to a ‘MongoServerSelectionError’ and due to environmental variables not being set.
+
+My Solution:
+
+Fixed the Database URI
+
+Verified the ConfigMap and Secret injection
+
+Restarted the Deployment and confirmed in real-time logs
+
+3. Frontend Cannot Reach Backend
+
+The frontend was returning Internal Server Errors when attempting to connect to the backend.
+
+Solution:
+
+Exposed the backend using the correct ClusterIP Service
+
+Added environment variables to the frontend
+
+Correctly port-forwarded for local access during testing
+
+4. JWT Secret Misconfiguration
+
+The backend showed: secretOrPrivateKey should not be empty
+
+Solution:
+
+Added the required JWT secret as a Kubernetes Secret
+
+Mounted and verified the value in the backend pods
+
+Re-deployed the backend
+
+5. Port-Forwarding and Service Port Issues
+
+Initial attempts at port forwarding yielded: Service does not have a service port 3000
+
+Solution:
+
+The correct service ports were checked
+
+8080:80 forwarded for frontend
+
+5001:5001 forwarded for the backend
+
+Ensured repeatable background port-forwarding setups
+
+Final Outcome
+
+The backend service is up and connected with MongoDB
+
+MongoDB is running with persistent storage and authenticated access
+
+The frontend is fully functional and communicates with the backend
+
+The entire application runs inside Kubernetes, and all components are correctly orchestrated
+
+#Kubernetes #DevOps #CloudComputing #Microservices
+#FullStackDevelopment #CloudNative #Docker #Minikube
+#SoftwareEngineering #ProjectShowcase
